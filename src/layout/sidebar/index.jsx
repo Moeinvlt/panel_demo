@@ -1,15 +1,16 @@
+import Darkmode from "../../components/Darkmode"
 import SideBarItem from "./SideBarItem";
 
 function Sidebar() {
     return (
-        <aside className="bg-[#FFEAD8] fixed pt-8 h-screen w-64 right-0 shadow-lg flex flex-col justify-between">
+        <aside className="bg-[#FFEAD8] dark:bg-[#2f2e3d] fixed pt-8 h-screen w-64 right-0 shadow-lg flex flex-col justify-between">
             <div className="flex justify-between items-center h-16 shadow-md p-3 bg-[#555879] rounded-lg mx-4">
                 <div>
                     <h1 className="text-white">پنل مدیریت</h1>
                 </div>
 
                 <div>
-                    <h1 className="text-white">dark mode</h1>
+                    <Darkmode/>
                 </div>
             </div>
 

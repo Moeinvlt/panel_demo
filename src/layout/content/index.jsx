@@ -7,7 +7,7 @@ import GalleriesPage from "../../pages/galleries";
 
 const Content = () => {
     return(
-        <main className="bg-[#DED3C4] fixed top-0 left-0 h-screen w-full pr-64 pt-16">
+        <main className="bg-[#DED3C4] dark:bg-[#555879] dark:text-white fixed top-0 left-0 h-screen w-full pr-64 pt-16">
             <div className="p-4 w-full h-full">
                 <Routes>
                     <Route path="/users" element={<UsersPage/>} />

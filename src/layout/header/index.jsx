@@ -1,7 +1,7 @@
 
 const Header = () => {
     return(
-        <header className="bg-[#FADA7A] w-full fixed top-0 left-0 h-16 pr-64 shadow">
+        <header className="bg-[#FADA7A] dark:bg-[#574964] dark:text-white w-full fixed top-0 left-0 h-16 pr-64 shadow">
             <div className="flex justify-between items-center h-full p-2">
                 <div>
                     <h2>امروز 25 اردیبهشت</h2>
