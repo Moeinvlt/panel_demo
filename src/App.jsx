@@ -4,10 +4,12 @@ import Sidebar from "./layout/sidebar"
 
 const App = () => {
   return (
-    <div>
-      <Content/>
-      <Header/>
-      <Sidebar/>
+    <div className="">
+     <Sidebar/>
+      <div className="w-full pr-64">
+        <Header/>
+        <Content/>
+      </div>
     </div>
   )
 }

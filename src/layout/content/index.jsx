@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router";
+import { Routes, Route, Navigate } from "react-router";
 import UsersPage from "../../pages/users";
 import PostsPage from "../../pages/posts";
 import CommentsPage from "../../pages/comments";
@@ -7,7 +7,7 @@ import GalleriesPage from "../../pages/galleries";
 
 const Content = () => {
     return(
-        <main className="bg-[#DED3C4] dark:bg-[#555879] dark:text-white fixed top-0 left-0 h-screen w-full pr-64 pt-16">
+        <main className="bg-[#DED3C4] dark:bg-[#555879] text-[#555879] dark:text-white h-screen w-full">
             <div className="p-4 w-full h-full">
                 <Routes>
                     <Route path="/users" element={<UsersPage/>} />
@@ -15,6 +15,7 @@ const Content = () => {
                     <Route path="/comments" element={<CommentsPage/>} />
                     <Route path="/tasks" element={<TasksPage/>} />
                     <Route path="/gallery" element={<GalleriesPage/>} />
+                    <Route path="/" element={<Navigate to="/users" />} />
                 </Routes>
             </div>
         </main>
