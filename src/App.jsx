@@ -4,7 +4,7 @@ import Sidebar from "./layout/sidebar"
 
 const App = () => {
   return (
-    <div className="">
+    <div>
      <Sidebar/>
       <div className="w-full pr-64">
         <Header/>
