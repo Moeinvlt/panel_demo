@@ -3,6 +3,7 @@ import { getUsers } from "../../services/users";
 import { FaUserPlus } from "react-icons/fa";
 import UsersTable from "../../components/UsersTable";
 import { Link } from "react-router";
+import { deleteUserService } from "../../services/users";
 
 
 export default function UsersPage(){
@@ -21,6 +22,15 @@ export default function UsersPage(){
         handelGetUsers();
     }, []);
 
+    const handelDelete = async (id) => {
+        const res = await deleteUserService(id)
+        if(res.status === 200) {
+            alert('عملیات با موفقیت انجام شد')
+
+            setUsers(users.filter(user => user.id !== id))
+        }
+    }
+
 
     return(
         <div className="space-y-4">
@@ -32,7 +42,7 @@ export default function UsersPage(){
                 </Link>
             </div>
 
-            <UsersTable users={users} />
+            <UsersTable users={users} handelDelete={handelDelete} />
         </div>
     );
 }

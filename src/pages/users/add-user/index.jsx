@@ -1,11 +1,19 @@
 import { useState } from "react"
+import { createUserService } from "../../../services/users";
+import { updateUserUserService } from "../../../services/users";
+import { useNavigate, useLocation } from "react-router";
 
 export default function AddUserPage(){
+    const navigate = useNavigate()
+
+    const location = useLocation()
+    const  userToEdit = location.state?.user
+
     const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        phone: '',
-        website: '',
+        name: userToEdit?.name || '',
+        email: userToEdit?.email || '',
+        phone: userToEdit?.phone || '',
+        website: userToEdit?.website || '',
     });
 
     const handleChange = (e) => {
@@ -16,18 +24,24 @@ export default function AddUserPage(){
         }));
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        alert("User added successfully!");
+        const res = userToEdit ? await updateUserUserService(userToEdit.id, formData) : await createUserService(formData)
 
-        //* clear form
-        setFormData({ name: '', email: '', phone: '', website: '' });
+        if(res.status === 201 || res.status === 200) {
+            alert("عملیات با موفقیت انجام شد" + res.data.id);
+            console.log(res)
+
+            //* clear form
+            setFormData({ name: '', email: '', phone: '', website: '' });
+            navigate(-1)
+        }
     };
 
     return(
         <div className="w-[45%] mx-auto">
-        <h1 className="text-3xl font-bold text-center mb-4 text-[#555879">افزودن کاربر</h1>
+        <h1 className="text-3xl font-bold text-center mb-4 text-[#555879">{userToEdit? 'ویرایش کاربر' : 'افزودن کاربر'} </h1>
         
         <form onSubmit={handleSubmit} className="bg-[#FFEAEA] dark:bg-[#272727] shadow-lg rounded-lg border-2 border-[#555879] p-5">
             <div className="mb-6">
@@ -87,7 +101,7 @@ export default function AddUserPage(){
                     type="submit" 
                     className="bg-[#555879] cursor-pointer text-white font-medium py-3 px-8 rounded-lg transition duration-300 shadow-md"
                 >
-                    ثبت
+                    {userToEdit? 'ویرایش' : 'ثبت'}
                 </button>
             </div>
         </form>
