@@ -8,7 +8,7 @@ const UsersTable = ({ users, handelDelete }) => {
 
     return (
         <div className="w-full overflow-x-auto rounded-2xl">
-          {/* حالت دسکتاپ */}
+          {/* for desktop size */}
           <table className="hidden md:table table-auto w-full text-center border-collapse">
             <thead className="bg-[#333446] text-white">
               <tr>
@@ -48,7 +48,7 @@ const UsersTable = ({ users, handelDelete }) => {
             </tbody>
           </table>
     
-          {/* حالت موبایل / تبلت */}
+          {/* for mobile/tablet size*/}
           <div className="block md:hidden space-y-4">
             {users.map((user) => (
               <div
