@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
-import { getPosts } from "../../services/posts";
+import { deletePostService, getPosts } from "../../services/posts";
 import { MdOutlinePostAdd } from "react-icons/md";
 import { FaEdit, FaTrash } from "react-icons/fa";
+import { Link } from "react-router";
 
 
 export default function PostsPage(){
@@ -25,15 +26,23 @@ export default function PostsPage(){
         console.log(posts);
     }, [posts]);
 
+    const handelDelete = async (id) => {
+        const res = await deletePostService(id)
+        if(res.status === 200) {
+            alert('عملیات با موفقیت انجام شد')
+
+            setPosts(posts.filter(post => post.id !== id))
+        }
+    }
+
     return(
         <div className="space-y-4">
             <div className="flex justify-between items-center">
                 <h1 className="text-2xl font-bold">مدیریت پست ها</h1>
-                {/* این دیو باید تبدیل به لینک بشه */}
-                <div className="bg-[#333446] text-white px-4 py-2 rounded-md flex items-center gap-2 cursor-pointer">
+                <Link to="/posts/add" className="bg-[#333446] text-white px-4 py-2 rounded-md flex items-center gap-2 cursor-pointer">
                     <MdOutlinePostAdd />
                     <span>افزودن پست</span>
-                </div>
+                </Link>
             </div>
 
         <div className="flex flex-wrap gap-6 justify-center mt-15 pb-6">
@@ -42,10 +51,10 @@ export default function PostsPage(){
                     <div className="bg-[#333446] text-white p-3 rounded-t-2xl flex justify-between">
                         <span># {post.id}</span>
                         <div className="flex gap-2 items-center">
-                            <button className="cursor-pointer text-white">
+                            <Link to={`/posts/edit/${post.id}`} state={{post}} className="cursor-pointer text-white">
                                 <FaEdit />
-                            </button>
-                            <button className="text-red-400 cursor-pointer">
+                            </Link>
+                            <button onClick={() => handelDelete(post.id)} className="text-red-400 cursor-pointer">
                                 <FaTrash />
                             </button>
                         </div>
