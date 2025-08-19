@@ -22,9 +22,6 @@ export default function PostsPage(){
         handelGetPosts();
     }, []);
 
-    useEffect(() => {
-        console.log(posts);
-    }, [posts]);
 
     const handelDelete = async (id) => {
         const res = await deletePostService(id)
@@ -45,25 +42,25 @@ export default function PostsPage(){
                 </Link>
             </div>
 
-        <div className="flex flex-wrap gap-6 justify-center mt-15 pb-6">
-            {posts.slice(0,20).map((post => (
-                <div className="w-full md:w-[45%] xl:w-[30%] 2xl:w-[20%]  bg-white dark:bg-[#574964] rounded-2xl shadow-md" key={post.id}>
-                    <div className="bg-[#333446] text-white p-3 rounded-t-2xl flex justify-between">
-                        <span># {post.id}</span>
-                        <div className="flex gap-2 items-center">
-                            <Link to={`/posts/edit/${post.id}`} state={{post}} className="cursor-pointer text-white">
-                                <FaEdit />
-                            </Link>
-                            <button onClick={() => handelDelete(post.id)} className="text-red-400 cursor-pointer">
-                                <FaTrash />
-                            </button>
+            <div className="flex flex-wrap gap-6 justify-center mt-15 pb-6">
+                {posts.slice(0,20).map((post => (
+                    <div className="w-full md:w-[45%] xl:w-[30%] 2xl:w-[20%]  bg-white dark:bg-[#574964] rounded-2xl shadow-md dark:shadow-sm dark:shadow-cyan-50" key={post.id}>
+                        <div className="bg-[#333446] text-white p-3 rounded-t-2xl flex justify-between">
+                            <span># {post.id}</span>
+                            <div className="flex gap-2 items-center">
+                                <Link to={`/posts/edit/${post.id}`} state={{post}} className="cursor-pointer text-white">
+                                    <FaEdit />
+                                </Link>
+                                <button onClick={() => handelDelete(post.id)} className="text-red-400 cursor-pointer">
+                                    <FaTrash />
+                                </button>
+                            </div>
                         </div>
+                        <h2 className="font-bold text-[20px] dark:text-[#cfcfcf] py-2 px-3">{post.title}</h2>
+                        <div className="text-justify px-4 pb-2 dark:text-[#cfcfcf]">{post.body}</div>
                     </div>
-                    <h2 className="font-bold text-[20px] dark:text-[#cfcfcf] py-2 px-3">{post.title}</h2>
-                    <div className="text-justify px-4 pb-2 dark:text-[#cfcfcf]">{post.body}</div>
-                </div>
-            )))}
-        </div>
+                )))}
+            </div>
         </div>
     )
 }
