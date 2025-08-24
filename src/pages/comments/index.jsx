@@ -21,10 +21,6 @@ export default function CommentsPage(){
         handelGetComments();
     }, []);
 
-    useEffect(() => {
-        console.log(comments);
-    }, [comments]);
-
     const handelDelete = async (id) => {
         const res = await deleteComment(id)
         if(res.status === 200) {
@@ -38,7 +34,6 @@ export default function CommentsPage(){
         <div className="space-y-4">
             <div className="flex justify-between items-center">
                 <h1 className="text-2xl font-bold">مدیریت کامنت ها</h1>
-                {/* این دیو باید لینک بشه */}
                 <Link to="/comments/add" className="bg-[#333446] text-white px-4 py-2 rounded-md flex items-center gap-2 cursor-pointer">
                     <MdAddComment />
                     <span>افزودن کامنت</span>
